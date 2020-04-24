@@ -5,8 +5,8 @@ module Turnpike
   class << self
     attr_accessor :namespace
 
-    def call(name = 'default', unique: false)
-      (unique ? UniqueQueue : Queue).new(name)
+    def call(name = 'default', unique: false, redis: nil)
+      (unique ? UniqueQueue : Queue).new(name, redis: redis)
     end
     alias [] call
   end
